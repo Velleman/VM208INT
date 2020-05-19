@@ -1,49 +1,12 @@
 #include "VM208INT.h"
+class Socket;
+VM208INT::VM208INT(uint8_t address):Interface(address) {
+    this->_address = address;    
+    this->_sockets = (Socket *)malloc(sizeof(Socket)*4);
+    this->_tca = new TCA9544(this->_address);
+}
 
-VM208INT::VM208INT(uint8_t address)
+Socket* VM208INT::getSocket(uint8_t index)
 {
-    
-}
-VM208INT::VM208INT(uint8_t address) {
-    
-}
-
-void VM208INT::setModule(VM208Module module, uint8_t index) {
-    
-}
-
-void VM208INT::setModule1(VM208Module  module) {
-    
-}
-
-void VM208INT::setModule2(VM208Module  module) {
-    
-}
-
-void VM208INT::setModule3(VM208Module  module) {
-    
-}
-
-void VM208INT::setModule4(VM208Module  module) {
-    
-}
-
-VM208Module* VM208INT::getModule1() {
-    return this->_modules[0];
-}
-
-VM208Module* VM208INT::getModule2() {
-    return this->_modules[1];
-}
-
-VM208Module* VM208INT::getModule3() {
-    return this->_modules[2];
-}
-
-VM208Module* VM208INT::getModule4() {
-    return this->_modules[3];
-}
-
-VM208Module* VM208INT::getModule(int index) {
-    return this->_modules[index];
+    return this->_sockets + index;
 }
