@@ -8,6 +8,8 @@ public:
     VM208EX(Socket *socket);
     void turnOnChannel(uint8_t index);
     void turnOffChannel(uint8_t index);
+    void turnAllChannelsOn();
+    void turnAllChannelsOff();
     bool isButtonPressed();
     uint8_t getPressedButton();
 

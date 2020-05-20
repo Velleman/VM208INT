@@ -8,4 +8,5 @@ public:
     Socket* getSocket(uint8_t index);
 private:
     TCA9544* _tca;
+    Socket* _sockets;
 };

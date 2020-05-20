@@ -10,5 +10,4 @@ public:
 
 protected:
     unsigned char _address;
-    Socket *_sockets;
 };
