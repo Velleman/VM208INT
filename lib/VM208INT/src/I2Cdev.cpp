@@ -1345,7 +1345,7 @@ uint16_t I2Cdev::readTimeout = I2CDEV_DEFAULT_READ_TIMEOUT;
         if (fNextInterruptFunction) return fNextInterruptFunction();
     }
 
-    TwoWire::TwoWire() { }
+    TwoWire::TwoWire() { begin(); }
     
     void TwoWire::begin(void) {
         rxBufferIndex = 0;

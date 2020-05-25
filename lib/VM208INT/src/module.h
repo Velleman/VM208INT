@@ -6,10 +6,10 @@ class Module{
         Module(Socket* socket);
         void setInterfaceAddress(uint8_t);
         uint8_t getInterfaceAddress();
-        /*void write(uint8_t value);
-        void write(uint8_t* data,uint8_t length);*/
+        void setSocket(Socket* socket);
+        bool Activate();
+        void Disactivate();
     protected:
         Socket* _socket;
-        uint8_t _intAddress;
-    
+        uint8_t _intAddress;    
 };

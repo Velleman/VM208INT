@@ -12,8 +12,6 @@ void Socket::Activate()
     if (this->_interface != NULL)
     {
         Wire.beginTransmission(this->_interface->getAddress());
-        Serial.println(this->_interface->getAddress(),HEX);
-        Serial.println(this->_id);
         Wire.write((0b1111100 | this->_id));
         Wire.endTransmission();
     }
@@ -24,7 +22,6 @@ void Socket::Disactivate()
     if (this->_interface != NULL)
     {
         Wire.beginTransmission(this->_interface->getAddress());
-        Serial.println(this->_interface->getAddress(),HEX);
         Wire.write(0b11111000);
         Wire.endTransmission();
     }

@@ -9,6 +9,13 @@ VM208INT::VM208INT(uint8_t address):Interface(address) {
     this->_tca = new TCA9544(this->_address);
 }
 
+void VM208INT::setAddress(uint8_t address)
+{
+    this->_address = address;
+    delete this->_tca;
+    this->_tca = new TCA9544(this->_address);
+}
+
 Socket* VM208INT:: getSocket(uint8_t index)
 {
     return &this->_sockets[index];
