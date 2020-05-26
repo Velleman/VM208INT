@@ -13,9 +13,10 @@ void VM208EX::setSocket(Socket *socket)
 {
     this->_socket = socket;
     this->Activate();
-    this->tca.setBankDirection(0, TCA6424A_OUTPUT);
-    this->tca.setBankDirection(1, TCA6424A_INPUT);
-    this->tca.setBankDirection(2, TCA6424A_OUTPUT);
+    this->tca.setBankDirection(0, 0x00);
+    this->tca.setBankDirection(1, 0xFF);
+    this->tca.setBankDirection(2, 0x00);
+    this->tca.readBank(1);
     turnAllChannelsOff();
     this->Disactivate();
 }
@@ -57,6 +58,18 @@ bool VM208EX::isButtonPressed()
 
 uint8_t VM208EX::getPressedButton()
 {
+    this->Activate();
+    uint8_t bank = this->tca.readBank(1);
+    uint8_t position = 1;
+    for (int i = 0; i < 8; i++)
+    {   
+        if ((bank | 0xFE) == 0xFE)
+        {
+            return position;
+        }
+        bank = bank >> 1;
+        position++;
+    }
     return 0;
 }
 

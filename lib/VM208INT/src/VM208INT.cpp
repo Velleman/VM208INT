@@ -16,7 +16,12 @@ void VM208INT::setAddress(uint8_t address)
     this->_tca = new TCA9544(this->_address);
 }
 
-Socket* VM208INT:: getSocket(uint8_t index)
+Socket* VM208INT:: getSocket(uint8_t socketNr)
 {
-    return &this->_sockets[index];
+    return &this->_sockets[socketNr-1];
+}
+
+uint8_t VM208INT::handleInterrupt()
+{
+    return this->_tca->readInterrupts();    
 }

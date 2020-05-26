@@ -6,7 +6,8 @@ class VM208EXChannel{
         VM208EXChannel(uint8_t id,TCA6424A* tca);
         void turnOn();
         void turnOff();
-        void changeState(bool state);
+        void enable(bool state);
+        void toggle();
         void turnLedOn();
         void turnLedOff();
         bool isButtonPressed();

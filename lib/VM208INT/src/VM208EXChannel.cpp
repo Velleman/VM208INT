@@ -15,7 +15,7 @@ void VM208EXChannel::turnOff() {
     this->_tca->writePin(this->_id+TCA6424A_P20,TCA6424A_HIGH);
 }
 
-void VM208EXChannel::changeState(bool state)
+void VM208EXChannel::enable(bool state)
 {
     if(state)
         this->turnOn();
@@ -33,5 +33,13 @@ void VM208EXChannel::turnLedOff() {
 }
 
 bool VM208EXChannel::isButtonPressed() {
-    return !this->_tca->readPin(this->_id); //Active low so invert the result;   
+    return !this->_tca->readPin(this->_id+TCA6424A_P10); //Active low so invert the result;   
+}
+
+void VM208EXChannel::toggle()
+{
+    bool state = this->_tca->readPin(this->_id);
+    state = !state;
+    this->_tca->writePin(this->_id,state);
+    this->_tca->writePin(this->_id+TCA6424A_P20,!state);
 }

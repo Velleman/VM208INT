@@ -7,6 +7,7 @@ public:
     VM208INT(uint8_t address = 0x70);
     void setAddress(uint8_t address);
     Socket* getSocket(uint8_t index);
+    uint8_t handleInterrupt();
 private:
     TCA9544* _tca;
     Socket* _sockets;
