@@ -11,8 +11,10 @@ class VM208EXChannel{
         void turnLedOn();
         void turnLedOff();
         bool isButtonPressed();
+        void reflectStatus(bool enable);
     private:
         uint8_t _id;
         TCA6424A* _tca;
+        bool _reflectStatus;
 
 };
