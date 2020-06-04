@@ -9,7 +9,7 @@ VM208EX ex2;
 VM208EX ex3;
 VM208EX ex4; 
 VM208EX ex5;
-void ISR();
+void InterruptServiceRoutine();
 void handleInterrupt();
 void toggleChannel(VM208EX &ex, uint8_t channel);
 bool interruptTriggerd = false;
@@ -19,7 +19,11 @@ void setup()
   Serial.begin(115200);
   Serial.println("test");
 
+#ifndef ESP32
   Wire.begin();
+#else
+  Wire.begin(33, 32, 100000);
+#endif
   // put your setup code here, to run once:
   interface.setAddress(0x70);
   interface2.setAddress(0x71);
@@ -28,7 +32,7 @@ void setup()
   ex3.setSocket(interface.getSocket(3));
   ex4.setSocket(interface.getSocket(4));
   ex5.setSocket(interface2.getSocket(1));
-  attachInterrupt(digitalPinToInterrupt(5), ISR, FALLING);
+  attachInterrupt(GPIO_NUM_35, InterruptServiceRoutine, FALLING);
 }
 
 void loop()
@@ -40,15 +44,15 @@ void loop()
     previousTime = millis();
   }*/
   handleInterrupt();
-  /*ex1[0].enable(true);
+  //ex1[0].enable(true);
   
-  ex1.turnAllChannelsOn();
-  ex2.turnAllChannelsOff();
+  /*ex1.turnAllChannelsOn();
+  //ex2.turnAllChannelsOff();
   delay(400);
   ex1.turnAllChannelsOff();
-  ex2.turnAllChannelsOn();
+  //ex2.turnAllChannelsOn();
   delay(400);
-  
+  /*
   ex1.turnOffChannel(0);
   ex1.turnOnChannel(0);*/
 
@@ -85,14 +89,14 @@ void loop()
   }*/
 }
 
-void ISR()
+void InterruptServiceRoutine()
 {
   interruptTriggerd = true;
 }
 
 void handleInterrupt()
 {
-  if (interruptTriggerd || digitalRead(5) == LOW)
+  if (interruptTriggerd || digitalRead(35) == LOW)
   {
     uint8_t socket = interface.handleInterrupt();
     if (socket) //if zero no interrupt happend on this interface
