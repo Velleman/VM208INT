@@ -10,6 +10,7 @@ class VM208Channel{
         void toggle();
         void turnLedOn();
         void turnLedOff();
+        void toggleLed();
         bool isButtonPressed();
         void reflectStatus(bool enable);
     private:

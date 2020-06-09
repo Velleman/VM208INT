@@ -39,6 +39,16 @@ void VM208Channel::turnLedOff()
     this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
 }
 
+void VM208Channel::toggleLed()
+{
+    if(this->_tca->readPin(this->_id + TCA6424A_P14))
+    {
+        turnLedOff();
+    }else{
+        turnLedOn();
+    }   
+}
+
 bool VM208Channel::isButtonPressed()
 {
     return !this->_tca->readPin(this->_id + TCA6424A_P10); //Active low so invert the result;
