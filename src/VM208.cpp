@@ -7,6 +7,10 @@ VM208::VM208(Socket *socket) : Module(socket)
     {
         this->_channels[i] = VM208Channel(i, &this->tca);
     }
+    this->tca.setBankDirection(0, 0b00000010);
+    this->tca.setBankDirection(1, 0xF0);
+    this->tca.setBankDirection(2, 0x00);
+    this->turnAllChannelsOff();
 }
 
 void VM208::setSocket(Socket *socket)
