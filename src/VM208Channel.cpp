@@ -11,14 +11,14 @@ void VM208Channel::turnOn()
 {
     this->_tca->writePin(this->_id, TCA6424A_HIGH);
     if (this->_reflectStatus)
-        this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_LOW);
+        this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_LOW);
 }
 
 void VM208Channel::turnOff()
 {
     this->_tca->writePin(this->_id, TCA6424A_LOW);
     if (this->_reflectStatus)
-        this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_HIGH);
+        this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
 }
 
 void VM208Channel::enable(bool state)
@@ -31,12 +31,12 @@ void VM208Channel::enable(bool state)
 
 void VM208Channel::turnLedOn()
 {
-    this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_LOW);
+    this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_LOW);
 }
 
 void VM208Channel::turnLedOff()
 {
-    this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_HIGH);
+    this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
 }
 
 bool VM208Channel::isButtonPressed()
