@@ -17,6 +17,6 @@ public:
     VM208Channel &operator[](int i);
     
 private:
-    TCA6424A tca = TCA6424A(TCA6424A_ADDRESS_ADDR_HIGH);
+    TCA6424A tca = TCA6424A(TCA6424A_ADDRESS_ADDR_LOW);
     VM208Channel* _channels;
 };
