@@ -1,27 +1,27 @@
-#include "VM208EXChannel.h"
+#include "VM208Channel.h"
 
-VM208EXChannel::VM208EXChannel(uint8_t id, TCA6424A *tca)
+VM208Channel::VM208Channel(uint8_t id, TCA6424A *tca)
 {
     this->_id = id;
     this->_tca = tca;
     this->_reflectStatus = true;
 }
 
-void VM208EXChannel::turnOn()
+void VM208Channel::turnOn()
 {
     this->_tca->writePin(this->_id, TCA6424A_HIGH);
     if (this->_reflectStatus)
         this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_LOW);
 }
 
-void VM208EXChannel::turnOff()
+void VM208Channel::turnOff()
 {
     this->_tca->writePin(this->_id, TCA6424A_LOW);
     if (this->_reflectStatus)
         this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_HIGH);
 }
 
-void VM208EXChannel::enable(bool state)
+void VM208Channel::enable(bool state)
 {
     if (state)
         this->turnOn();
@@ -29,22 +29,22 @@ void VM208EXChannel::enable(bool state)
         this->turnOff();
 }
 
-void VM208EXChannel::turnLedOn()
+void VM208Channel::turnLedOn()
 {
     this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_LOW);
 }
 
-void VM208EXChannel::turnLedOff()
+void VM208Channel::turnLedOff()
 {
     this->_tca->writePin(this->_id + TCA6424A_P20, TCA6424A_HIGH);
 }
 
-bool VM208EXChannel::isButtonPressed()
+bool VM208Channel::isButtonPressed()
 {
     return !this->_tca->readPin(this->_id + TCA6424A_P10); //Active low so invert the result;
 }
 
-void VM208EXChannel::toggle()
+void VM208Channel::toggle()
 {
     bool state = this->_tca->readPin(this->_id);
     if(state)
@@ -55,7 +55,7 @@ void VM208EXChannel::toggle()
     }
 }
 
-void VM208EXChannel::reflectStatus(bool status)
+void VM208Channel::reflectStatus(bool status)
 {
     this->_reflectStatus = status;
 }
