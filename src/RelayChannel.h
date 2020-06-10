@@ -8,7 +8,7 @@ public:
     String getName();
     virtual void turnOn();
     virtual void turnOff();
-    virtual void enable(bool enable);
+    void enable(bool enable);
     virtual void turnLedOn();
     virtual void turnLedOff();
     virtual void toggleLed();

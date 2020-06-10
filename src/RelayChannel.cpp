@@ -1,5 +1,10 @@
 #include "RelayChannel.h"
 
+RelayChannel::RelayChannel()
+{
+    
+}
+
 String RelayChannel::getName()
 {
     return _name;
