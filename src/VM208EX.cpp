@@ -2,11 +2,20 @@
 
 VM208EX::VM208EX(Socket *socket) : Module(socket)
 {
+    
+}
+
+void VM208EX::initialize()
+{
     this->_channels = (VM208EXChannel *)malloc(sizeof(VM208EXChannel) * 8);
     for (int i = 0; i < 8; i++)
     {
         this->_channels[i] = VM208EXChannel(i, &this->tca);
     }
+    this->tca.setBankDirection(0, 0x00);
+    this->tca.setBankDirection(1, 0xFF);
+    this->tca.setBankDirection(2, 0x00);
+    turnAllChannelsOff();
 }
 
 void VM208EX::setSocket(Socket *socket)

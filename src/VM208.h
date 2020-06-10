@@ -7,6 +7,7 @@ class VM208 : public Module
 {
 public:
     VM208(Socket *socket = NULL);
+    void initialize();
     void turnOnChannel(uint8_t index);
     void turnOffChannel(uint8_t index);
     void turnAllChannelsOn();
