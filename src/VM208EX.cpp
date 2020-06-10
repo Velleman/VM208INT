@@ -2,10 +2,10 @@
 
 VM208EX::VM208EX(Socket *socket) : Module(socket)
 {
-    this->_channels = (VM208Channel *)malloc(sizeof(VM208Channel) * 8);
+    this->_channels = (VM208EXChannel *)malloc(sizeof(VM208EXChannel) * 8);
     for (int i = 0; i < 8; i++)
     {
-        this->_channels[i] = VM208Channel(i, &this->tca);
+        this->_channels[i] = VM208EXChannel(i, &this->tca);
     }
 }
 
@@ -73,7 +73,7 @@ uint8_t VM208EX::getPressedButton()
     return 0;
 }
 
-VM208Channel &VM208EX::operator[](int index)
+VM208EXChannel &VM208EX::operator[](int index)
 {
     this->Activate();
     if (index > 7)

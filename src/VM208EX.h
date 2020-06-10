@@ -2,7 +2,7 @@
 #include "module.h"
 #include "socket.h"
 #include "TCA6424A.h"
-#include "VM208Channel.h"
+#include "VM208EXChannel.h"
 class VM208EX : public Module
 {
 public:
@@ -14,9 +14,9 @@ public:
     bool isButtonPressed();
     uint8_t getPressedButton();
     void setSocket(Socket* socket);
-    VM208Channel &operator[](int i);
+    VM208EXChannel &operator[](int i);
     
 private:
     TCA6424A tca = TCA6424A(TCA6424A_ADDRESS_ADDR_HIGH);
-    VM208Channel* _channels;
+    VM208EXChannel* _channels;
 };

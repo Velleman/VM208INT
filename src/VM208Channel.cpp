@@ -1,4 +1,4 @@
-#include "VM208Channel.h"
+khwb#include "VM208Channel.h"
 
 VM208Channel::VM208Channel(uint8_t id, TCA6424A *tca)
 {
@@ -19,14 +19,6 @@ void VM208Channel::turnOff()
     this->_tca->writePin(this->_id, TCA6424A_LOW);
     if (this->_reflectStatus)
         this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
-}
-
-void VM208Channel::enable(bool state)
-{
-    if (state)
-        this->turnOn();
-    else
-        this->turnOff();
 }
 
 void VM208Channel::turnLedOn()
