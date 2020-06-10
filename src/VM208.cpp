@@ -7,52 +7,46 @@ VM208::VM208(Socket *socket) : Module(socket)
 
 void VM208::initialize()
 {
-    this->_channels = (VM208Channel *)malloc(sizeof(VM208Channel) * 4);
+    Serial.println("Initialize VM208");
+    _channels = (VM208Channel *)malloc(sizeof(VM208Channel) * 4);
     for (int i = 0; i < 4; i++)
     {
-        this->_channels[i] = VM208Channel(i, &this->tca);
+        _channels[i] = VM208Channel(i, &tca);
     }
-    this->tca.setBankDirection(0, 0b00000010);
-    this->tca.setBankDirection(1, 0xF0);
-    this->tca.setBankDirection(2, 0x00);
-    this->turnAllChannelsOff();
+    tca.setBankDirection(0, 0b00000010);
+    
+    tca.setBankDirection(1, 0x0F);
+    tca.setBankDirection(2, 0x00);
+    //turnAllChannelsOff();
 }
 
 void VM208::setSocket(Socket *socket)
 {
-    this->_channels = (VM208Channel *)malloc(sizeof(VM208Channel) * 4);
-    for (int i = 0; i < 4; i++)
-    {
-        this->_channels[i] = VM208Channel(i, &this->tca);
-    }
-    this->tca.setBankDirection(0, 0b00000010);
-    this->tca.setBankDirection(1, 0xF0);
-    this->tca.setBankDirection(2, 0x00);
-    this->turnAllChannelsOff();
 }
 
 void VM208::turnOnChannel(uint8_t index)
 {
-    this->_channels[index].turnOn();
+    _channels[index].turnOn();
 }
 
 void VM208::turnOffChannel(uint8_t index)
 {
-    this->_channels[index].turnOff();
+    _channels[index].turnOff();
 }
 
 void VM208::turnAllChannelsOn()
 {
-    uint8_t bank = this->tca.readBank(0);
-    this->tca.writeBank(0, bank | 0xF0);
-    this->tca.writeBank(1, 0x00);
+    Serial.println("Turn On these bitches");
+    uint8_t bank = tca.readBank(0);
+    tca.writeBank(0, bank | 0x0F);
+    tca.writeBank(1, 0x00);
 }
 
 void VM208::turnAllChannelsOff()
 {
-    uint8_t bank = this->tca.readBank(0);
-    this->tca.writeBank(0, 0x0F & bank);
-    this->tca.writeBank(1, 0xFF);
+    uint8_t bank = tca.readBank(0);
+    tca.writeBank(0, 0xF0 & bank);
+    tca.writeBank(1, 0xFF);
 }
 
 bool VM208::isButtonPressed()
@@ -83,8 +77,8 @@ VM208Channel &VM208::operator[](int index)
     if (index > 3)
     {
         // return first element.
-        return this->_channels[0];
+        return _channels[0];
     }
 
-    return this->_channels[index];
+    return _channels[index];
 }
