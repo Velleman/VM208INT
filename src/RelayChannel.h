@@ -6,15 +6,15 @@ public:
     RelayChannel();
     void setName(String name);
     String getName();
-    virtual void turnOn();
-    virtual void turnOff();
+    virtual void turnOn()=0;
+    virtual void turnOff()=0;
     void enable(bool enable);
-    virtual void turnLedOn();
-    virtual void turnLedOff();
-    virtual void toggleLed();
-    virtual bool isButtonPressed();
-    virtual void toggle();
-    virtual void reflectStatus(bool status);
+    virtual void turnLedOn()=0;
+    virtual void turnLedOff()=0;
+    virtual void toggleLed()=0;
+    virtual bool isButtonPressed()=0;
+    virtual void toggle()=0;
+    virtual void reflectStatus(bool status)=0;
 protected:
     String _name;
 };
