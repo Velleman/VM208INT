@@ -1,9 +1,9 @@
 #pragma once
-#include "module.h"
+#include "RelayModule.h"
 #include "socket.h"
 #include "TCA6424A.h"
 #include "VM208Channel.h"
-class VM208 : public Module
+class VM208 : public RelayModule
 {
 public:
     VM208(Socket *socket = NULL);

@@ -1,6 +1,6 @@
 #include "VM208EX.h"
 
-VM208EX::VM208EX(Socket *socket) : Module(socket)
+VM208EX::VM208EX(Socket *socket) : RelayModule(socket)
 {
     
 }
