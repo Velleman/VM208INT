@@ -14,6 +14,8 @@ class VM208EXChannel: public RelayChannel{
         void toggleLed();
         bool isButtonPressed();
         void reflectStatus(bool enable);
+        bool isOn();
+        bool isOff();
     private:
         uint8_t _id;
         TCA6424A* _tca;

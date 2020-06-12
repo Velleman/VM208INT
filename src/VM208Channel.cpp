@@ -61,3 +61,13 @@ void VM208Channel::reflectStatus(bool status)
 {
     this->_reflectStatus = status;
 }
+
+bool VM208Channel::isOn()
+{
+    return _tca->readPin(_id);
+}
+
+bool VM208Channel::isOff()
+{
+    return !_tca->readPin(_id);
+}

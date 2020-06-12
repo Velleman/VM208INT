@@ -15,6 +15,8 @@ public:
     virtual bool isButtonPressed()=0;
     virtual void toggle()=0;
     virtual void reflectStatus(bool status)=0;
+    virtual bool isOn()=0;
+    virtual bool isOff()=0;
 protected:
     String _name;
 };
