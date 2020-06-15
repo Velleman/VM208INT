@@ -71,6 +71,12 @@ uint8_t VM208::getPressedButton()
     return 0;
 }
 
+VM208Channel* VM208::getChannel(uint8_t index)
+{
+    if()
+    return &_channels[index];
+}
+
 VM208Channel &VM208::operator[](int index)
 {
     this->Activate();

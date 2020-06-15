@@ -16,6 +16,8 @@ public:
     uint8_t getPressedButton();
     void setSocket(Socket* socket);
     VM208Channel &operator[](int i);
+    void setChannel(RelayChannel* channel,int index);
+    VM208Channel* getChannel(uint8_t index);
     
 private:
     TCA6424A tca = TCA6424A(TCA6424A_ADDRESS_ADDR_LOW);
