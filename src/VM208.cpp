@@ -2,7 +2,6 @@
 
 VM208::VM208(Socket *socket) : RelayModule(socket)
 {
-    
 }
 
 void VM208::initialize()
@@ -14,7 +13,7 @@ void VM208::initialize()
         _channels[i] = VM208Channel(i, &tca);
     }
     tca.setBankDirection(0, 0b00000010);
-    
+
     tca.setBankDirection(1, 0x0F);
     tca.setBankDirection(2, 0x00);
     //turnAllChannelsOff();
@@ -71,10 +70,12 @@ uint8_t VM208::getPressedButton()
     return 0;
 }
 
-VM208Channel* VM208::getChannel(uint8_t index)
+VM208Channel *VM208::getChannel(uint8_t index)
 {
-    if()
-    return &_channels[index];
+    if (index <= 3)
+        return &_channels[index];
+    else
+        return nullptr;
 }
 
 VM208Channel &VM208::operator[](int index)
