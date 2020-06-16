@@ -7,10 +7,10 @@ VM208EX::VM208EX(Socket *socket) : RelayModule(socket)
 
 void VM208EX::initialize()
 {
-    this->_channels = (VM208EXChannel *)malloc(sizeof(VM208EXChannel) * 8);
+    this->_channels = (VM208EXChannel **)malloc(sizeof(VM208EXChannel) * 8);
     for (int i = 0; i < 8; i++)
     {
-        this->_channels[i] = VM208EXChannel(i, &this->tca);
+        this->_channels[i] = new VM208EXChannel(i, &this->tca);
     }
     this->tca.setBankDirection(0, 0x00);
     this->tca.setBankDirection(1, 0xFF);
@@ -33,14 +33,14 @@ void VM208EX::setSocket(Socket *socket)
 void VM208EX::turnOnChannel(uint8_t index)
 {
     this->Activate();
-    this->_channels[index].turnOn();
+    this->_channels[index]->turnOn();
     this->Disactivate();
 }
 
 void VM208EX::turnOffChannel(uint8_t index)
 {
     this->Activate();
-    this->_channels[index].turnOff();
+    this->_channels[index]->turnOff();
     this->Disactivate();
 }
 
@@ -88,8 +88,8 @@ VM208EXChannel &VM208EX::operator[](int index)
     if (index > 7)
     {
         // return first element.
-        return this->_channels[0];
+        return *(this->_channels[0]);
     }
 
-    return this->_channels[index];
+    return *(this->_channels[index]);
 }
