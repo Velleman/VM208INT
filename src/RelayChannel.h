@@ -19,4 +19,5 @@ public:
     virtual bool isOff()=0;
 protected:
     String _name;
+    bool _state = false;
 };

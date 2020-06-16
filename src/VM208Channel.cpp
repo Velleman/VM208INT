@@ -9,6 +9,7 @@ VM208Channel::VM208Channel(uint8_t id, TCA6424A *tca)
 
 void VM208Channel::turnOn()
 {
+    _state = true;
     this->_tca->writePin(this->_id, TCA6424A_HIGH);
     if (this->_reflectStatus)
         this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_LOW);
@@ -16,6 +17,7 @@ void VM208Channel::turnOn()
 
 void VM208Channel::turnOff()
 {
+    _state = false; 
     this->_tca->writePin(this->_id, TCA6424A_LOW);
     if (this->_reflectStatus)
         this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
@@ -64,10 +66,10 @@ void VM208Channel::reflectStatus(bool status)
 
 bool VM208Channel::isOn()
 {
-    return _tca->readPin(_id);
+    return _state;
 }
 
 bool VM208Channel::isOff()
 {
-    return !_tca->readPin(_id);
+    return !_state;
 }
