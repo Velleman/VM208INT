@@ -15,7 +15,7 @@ class VM208Channel: public RelayChannel{
         void reflectStatus(bool enable);
         bool isOn();
         bool isOff();
-    private:
+    protected:
         uint8_t _id;
         TCA6424A* _tca;
         bool _reflectStatus;
