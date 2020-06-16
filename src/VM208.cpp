@@ -15,6 +15,10 @@ void VM208::initialize()
     tca.setBankDirection(0, 0b00000010);
 
     tca.setBankDirection(1, 0x0F);
+    tca.setPinDirection(TCA6424A_P10, TCA6424A_INPUT);
+    tca.setPinDirection(TCA6424A_P11, TCA6424A_INPUT);
+    tca.setPinDirection(TCA6424A_P12, TCA6424A_INPUT);
+    tca.setPinDirection(TCA6424A_P13, TCA6424A_INPUT);
     tca.setBankDirection(2, 0x00);
     //turnAllChannelsOff();
 }
@@ -35,7 +39,6 @@ void VM208::turnOffChannel(uint8_t index)
 
 void VM208::turnAllChannelsOn()
 {
-    Serial.println("Turn On these bitches");
     uint8_t bank = tca.readBank(0);
     tca.writeBank(0, bank | 0x0F);
     tca.writeBank(1, 0x00);

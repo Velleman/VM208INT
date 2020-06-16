@@ -36,3 +36,8 @@ uint8_t Module::getInterfaceAddress()
 {
     return this->_intAddress;
 }
+
+bool Module::hasSocket()
+{
+    return (this->_socket != NULL);
+}

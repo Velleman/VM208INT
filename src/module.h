@@ -9,6 +9,7 @@ class Module{
         void setSocket(Socket* socket);
         bool Activate();
         void Disactivate();
+        bool hasSocket();
     protected:
         Socket* _socket;
         uint8_t _intAddress;    
