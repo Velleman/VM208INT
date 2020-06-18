@@ -78,7 +78,7 @@ VM208Channel *VM208::getChannel(uint8_t index)
     if (index <= 3)
         return _channels[index];
     else
-        return nullptr;
+        return _channels[0];
 }
 
 VM208Channel &VM208::operator[](int index)
