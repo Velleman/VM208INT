@@ -96,6 +96,7 @@ VM208EXChannel &VM208EX::operator[](int index)
 
 VM208EXChannel *VM208EX::getChannel(uint8_t index)
 {
+    this->Activate();
     if (index <= 7)
         return _channels[index];
     else
