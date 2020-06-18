@@ -21,5 +21,5 @@ public:
     
 private:
     TCA6424A tca = TCA6424A(TCA6424A_ADDRESS_ADDR_LOW);
-    VM208Channel** _channels;
+    VM208Channel* _channels[4];
 };

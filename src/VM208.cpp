@@ -7,18 +7,29 @@ VM208::VM208(Socket *socket) : RelayModule(socket)
 void VM208::initialize()
 {
     Serial.println("Initialize VM208");
-    _channels = (VM208Channel **)malloc(sizeof(VM208Channel) * 4);
     for (int i = 0; i < 4; i++)
     {
         _channels[i] = new VM208Channel(i, &tca);
     }
-    tca.setBankDirection(0, 0b00000010);
+    //tca.setBankDirection(0, 0b00000010);
+    tca.setPinDirection(TCA6424A_P00, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P01, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P02, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P03, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P04, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P05, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P06, TCA6424A_INPUT);
+    tca.setPinDirection(TCA6424A_P07, TCA6424A_OUTPUT);
 
     tca.setBankDirection(1, 0x0F);
     tca.setPinDirection(TCA6424A_P10, TCA6424A_INPUT);
     tca.setPinDirection(TCA6424A_P11, TCA6424A_INPUT);
     tca.setPinDirection(TCA6424A_P12, TCA6424A_INPUT);
     tca.setPinDirection(TCA6424A_P13, TCA6424A_INPUT);
+    tca.setPinDirection(TCA6424A_P14, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P15, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P16, TCA6424A_OUTPUT);
+    tca.setPinDirection(TCA6424A_P17, TCA6424A_OUTPUT);
     tca.setBankDirection(2, 0x00);
     //turnAllChannelsOff();
 }
