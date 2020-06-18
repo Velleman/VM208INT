@@ -50,16 +50,19 @@ void VM208::turnOffChannel(uint8_t index)
 
 void VM208::turnAllChannelsOn()
 {
-    uint8_t bank = tca.readBank(0);
-    tca.writeBank(0, bank | 0x0F);
-    tca.writeBank(1, 0x00);
+    //uint8_t bank = tca.readBank(0);
+    for(int i = 0;i<4;i++)
+    {
+        _channels[i]->turnOn();
+    }
 }
 
 void VM208::turnAllChannelsOff()
 {
-    uint8_t bank = tca.readBank(0);
-    tca.writeBank(0, 0xF0 & bank);
-    tca.writeBank(1, 0xFF);
+    for(int i = 0;i<4;i++)
+    {
+        _channels[i]->turnOff();
+    }
 }
 
 bool VM208::isButtonPressed()
