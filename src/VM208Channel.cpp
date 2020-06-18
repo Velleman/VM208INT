@@ -50,8 +50,7 @@ bool VM208Channel::isButtonPressed()
 
 void VM208Channel::toggle()
 {
-    bool state = this->_tca->readPin(this->_id);
-    if(state)
+    if(_state)
         this->turnOff();
     else
     {
