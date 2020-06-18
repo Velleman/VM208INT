@@ -84,7 +84,7 @@ uint8_t VM208EX::getPressedButton()
 
 VM208EXChannel &VM208EX::operator[](int index)
 {
-    //this->Activate();
+    this->Activate();
     if (index > 7)
     {
         // return first element.
@@ -92,4 +92,12 @@ VM208EXChannel &VM208EX::operator[](int index)
     }
 
     return *(this->_channels[index]);
+}
+
+VM208EXChannel *VM208EX::getChannel(uint8_t index)
+{
+    if (index <= 7)
+        return _channels[index];
+    else
+        return _channels[0];
 }
