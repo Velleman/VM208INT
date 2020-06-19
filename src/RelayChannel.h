@@ -4,7 +4,7 @@ class RelayChannel
 {
 public:
     RelayChannel();
-    void setName(String name);
+    void setName(String& name);
     String getName();
     virtual void turnOn()=0;
     virtual void turnOff()=0;

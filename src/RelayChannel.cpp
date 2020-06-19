@@ -10,7 +10,7 @@ String RelayChannel::getName()
     return _name;
 }
 
-void RelayChannel::setName(String name)
+void RelayChannel::setName(String& name)
 {
     _name = name;
 }
