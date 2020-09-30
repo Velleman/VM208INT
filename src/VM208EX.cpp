@@ -2,7 +2,6 @@
 
 VM208EX::VM208EX(Socket *socket) : RelayModule(socket)
 {
-    
 }
 
 void VM208EX::initialize()
@@ -71,7 +70,7 @@ uint8_t VM208EX::getPressedButton()
     uint8_t bank = this->tca.readBank(1);
     uint8_t position = 1;
     for (int i = 0; i < 8; i++)
-    {   
+    {
         if ((bank | 0xFE) == 0xFE)
         {
             return position;
@@ -94,9 +93,10 @@ VM208EXChannel &VM208EX::operator[](int index)
     return *(this->_channels[index]);
 }
 
-VM208EXChannel *VM208EX::getChannel(uint8_t index)
+VM208EXChannel *VM208EX::getChannel(uint8_t index; bool activate)
 {
-    this->Activate();
+    if (activate)
+        this->Activate();
     if (index <= 7)
         return _channels[index];
     else
