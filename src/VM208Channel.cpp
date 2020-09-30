@@ -12,7 +12,7 @@ void VM208Channel::turnOn()
     _state = true;
     this->_tca->writePin(this->_id, TCA6424A_HIGH);
     if (this->_reflectStatus)
-        this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_LOW);
+        this->turnLedOn();
 }
 
 void VM208Channel::turnOff()
@@ -20,22 +20,24 @@ void VM208Channel::turnOff()
     _state = false; 
     this->_tca->writePin(this->_id, TCA6424A_LOW);
     if (this->_reflectStatus)
-        this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
+        this->turnLedOff();
 }
 
 void VM208Channel::turnLedOn()
 {
+    _ledStatus = true;
     this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_LOW);
 }
 
 void VM208Channel::turnLedOff()
 {
+    _ledStatus = false;
     this->_tca->writePin(this->_id + TCA6424A_P14, TCA6424A_HIGH);
 }
 
 void VM208Channel::toggleLed()
 {
-    if(this->_tca->readPin(this->_id + TCA6424A_P14))
+    if(_ledStatus)
     {
         turnLedOff();
     }else{

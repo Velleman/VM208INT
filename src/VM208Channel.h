@@ -19,5 +19,6 @@ class VM208Channel: public RelayChannel{
         uint8_t _id;
         TCA6424A* _tca;
         bool _reflectStatus;
+        bool _ledStatus;
 
 };
