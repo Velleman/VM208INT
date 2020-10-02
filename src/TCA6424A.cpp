@@ -90,14 +90,14 @@ bool TCA6424A::testConnection()
  */
 bool TCA6424A::readPin(uint16_t pin)
 {
-    //I2Cdev::readBit(devAddr, TCA6424A_RA_INPUT0 + (pin / 8), pin % 8, buffer);
-    Wire.beginTransmission(devAddr);
+    I2Cdev::readBit(devAddr, TCA6424A_RA_INPUT0 + (pin / 8), pin % 8, buffer);
+    /*Wire.beginTransmission(devAddr);
     Wire.write(TCA6424A_RA_INPUT0 + (pin / 8));
     Wire.endTransmission();
     Wire.requestFrom(devAddr, 1);
     buffer[0] = 0;
     buffer[0] = Wire.read();
-    buffer[0] = buffer[0] & (1 << pin % 8);
+    buffer[0] = buffer[0] & (1 << pin % 8);*/
     return buffer[0];
 }
 /** Get all pin logic levels from one bank.
@@ -106,12 +106,12 @@ bool TCA6424A::readPin(uint16_t pin)
  */
 uint8_t TCA6424A::readBank(uint8_t bank)
 {
-    //I2Cdev::readByte(devAddr, TCA6424A_RA_INPUT0 + bank, buffer);
-    Wire.beginTransmission(devAddr);
+    I2Cdev::readByte(devAddr, TCA6424A_RA_INPUT0 + bank, buffer);
+    /*Wire.beginTransmission(devAddr);
     Wire.write(bank);
     Wire.endTransmission();
     Wire.requestFrom(devAddr, 1);
-    buffer[0] = Wire.read();
+    buffer[0] = Wire.read();*/
     return buffer[0];
 }
 /** Get all pin logic levels from all banks.
@@ -188,8 +188,8 @@ void TCA6424A::getAllOutputLevel(uint8_t *bank0, uint8_t *bank1, uint8_t *bank2)
  */
 void TCA6424A::writePin(uint16_t pin, bool value)
 {
-    //I2Cdev::writeBit(devAddr, TCA6424A_RA_OUTPUT0 + (pin / 8), pin % 8, value);
-    uint8_t pinNumber = pin % 8;
+    I2Cdev::writeBit(devAddr, TCA6424A_RA_OUTPUT0 + (pin / 8), pin % 8, value);
+    /*uint8_t pinNumber = pin % 8;
     uint8_t reg = TCA6424A_RA_OUTPUT0 + (pin / 8);
     if (value)
     {
@@ -203,7 +203,7 @@ void TCA6424A::writePin(uint16_t pin, bool value)
     Wire.beginTransmission(devAddr);
     Wire.write(TCA6424A_RA_OUTPUT0 + (pin / 8));
     Wire.write(registers[reg]);
-    Wire.endTransmission();
+    Wire.endTransmission();*/
 }
 /** Set all OUTPUT pins' logic levels in one bank.
  * @param bank Which bank to write (0/1/2 for P0*, P1*, P2* respectively)
@@ -355,8 +355,8 @@ void TCA6424A::getAllDirection(uint8_t *bank0, uint8_t *bank1, uint8_t *bank2)
  */
 void TCA6424A::setPinDirection(uint16_t pin, bool direction)
 {
-    //I2Cdev::writeBit(devAddr, TCA6424A_RA_CONFIG0 + (pin / 8), pin % 8, direction);
-    uint8_t pinNumber = pin % 8;
+    I2Cdev::writeBit(devAddr, TCA6424A_RA_CONFIG0 + (pin / 8), pin % 8, direction);
+    /*uint8_t pinNumber = pin % 8;
     uint8_t reg = TCA6424A_RA_CONFIG0 + (pin / 8);
     if (direction)
     {
@@ -370,7 +370,7 @@ void TCA6424A::setPinDirection(uint16_t pin, bool direction)
     Wire.beginTransmission(devAddr);
     Wire.write(reg);
     Wire.write(registers[reg]);
-    Wire.endTransmission();
+    Wire.endTransmission();*/
 }
 /** Set all pin direction (I/O) settings in one bank.
  * @param bank Which bank to read (0/1/2 for P0*, P1*, P2* respectively)
