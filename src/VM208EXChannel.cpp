@@ -39,9 +39,9 @@ void VM208EXChannel::toggleLed()
 {
     if(_ledStatus)
     {
-        turnLedOff();
+        this->turnLedOff();
     }else{
-        turnLedOn();
+        this->turnLedOn();
     }   
 }
 
