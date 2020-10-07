@@ -52,8 +52,8 @@ bool VM208EXChannel::isButtonPressed()
 
 void VM208EXChannel::toggle()
 {
-    bool state = _tca->readPin(_id);
-    if(state)
+    //bool state = _tca->readPin(_id);
+    if(_state)
         turnOff();
     else
     {
