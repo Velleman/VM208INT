@@ -13,6 +13,13 @@ public:
     void turnAllChannelsOn();
     void turnAllChannelsOff();
     bool isButtonPressed();
+    bool getUserInputState();
+    void turnOnMosfet1();
+    void turnOffMosfet1();
+    void turnOnMosfet2();
+    void turnOffMosfet2();
+    bool getMosfet1State();
+    bool getMosfet2State();
     uint8_t getPressedButton();
     void setSocket(Socket* socket);
     VM208Channel &operator[](int i);
@@ -22,4 +29,7 @@ public:
 private:
     TCA6424A tca = TCA6424A(TCA6424A_ADDRESS_ADDR_LOW);
     VM208Channel* _channels[4];
+    bool _mosfet1State=false;
+    bool _mosfet2State=false;
+
 };

@@ -106,3 +106,47 @@ VM208Channel &VM208::operator[](int index)
 
     return *_channels[index];
 }
+
+bool VM208::getUserInputState()
+{
+    this->Activate();
+    return this->tca.readPin(TCA6424A_P06);
+}
+
+void VM208::turnOnMosfet1()
+{
+    this->Activate();
+    this->tca.writePin(TCA6424A_P04,HIGH);
+    _mosfet1State = true;
+}
+
+void VM208::turnOffMosfet1()
+{
+    this->Activate();
+    this->tca.writePin(TCA6424A_P04,LOW);
+    _mosfet1State = false;
+}
+
+void VM208::turnOnMosfet2()
+{
+    this->Activate();
+    this->tca.writePin(TCA6424A_P05,HIGH);
+    _mosfet2State = true;
+}
+
+void VM208::turnOffMosfet2()
+{
+    this->Activate();
+    this->tca.writePin(TCA6424A_P05,LOW);
+    _mosfet2State = false;
+}
+
+bool VM208::getMosfet1State()
+{
+    return _mosfet1State;
+}
+
+bool VM208::getMosfet2State()
+{
+    return _mosfet2State;
+}
