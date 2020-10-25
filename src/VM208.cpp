@@ -116,28 +116,28 @@ bool VM208::getUserInputState()
 void VM208::turnOnMosfet1()
 {
     this->Activate();
-    this->tca.writePin(TCA6424A_P04,HIGH);
+    this->tca.writePin(TCA6424A_P05,HIGH);
     _mosfet1State = true;
 }
 
 void VM208::turnOffMosfet1()
 {
     this->Activate();
-    this->tca.writePin(TCA6424A_P04,LOW);
+    this->tca.writePin(TCA6424A_P05,LOW);
     _mosfet1State = false;
 }
 
 void VM208::turnOnMosfet2()
 {
     this->Activate();
-    this->tca.writePin(TCA6424A_P05,HIGH);
+    this->tca.writePin(TCA6424A_P04,HIGH);
     _mosfet2State = true;
 }
 
 void VM208::turnOffMosfet2()
 {
     this->Activate();
-    this->tca.writePin(TCA6424A_P05,LOW);
+    this->tca.writePin(TCA6424A_P04,LOW);
     _mosfet2State = false;
 }
 
